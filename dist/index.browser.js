@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.snarkjsToSolana = snarkjsToSolana;
+exports.getSolanaCompatibleProof = getSolanaCompatibleProof;
 // @ts-ignore
 const ff = __importStar(require("ffjavascript"));
 let convert_proof;
@@ -58,7 +58,7 @@ const g2Uncompressed = (curve, p2Raw) => {
     curve.G2.toRprUncompressed(buff, 0, p2);
     return Buffer.from(buff);
 };
-async function snarkjsToSolana(proof) {
+async function getSolanaCompatibleProof(proof) {
     if (!convert_proof) {
         await initWebModule();
     }

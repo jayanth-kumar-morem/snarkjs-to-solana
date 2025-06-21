@@ -28,7 +28,7 @@ const g2Uncompressed = (curve: any, p2Raw: any) => {
     return Buffer.from(buff);
 }
 
-export async function snarkjsToSolana(proof: any) {
+export async function getSolanaCompatibleProof(proof: any) {
     if (!convert_proof) {
         await initWebModule();
     }

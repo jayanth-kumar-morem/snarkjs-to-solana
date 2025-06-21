@@ -1,6 +1,25 @@
 # Usage Examples
 
-## Node.js / Bundler Environment
+## CLI Usage
+
+### Convert Verification Key to Rust
+
+```bash
+# Convert a snarkjs verification key to Rust format
+snarkjs-to-solana verification-key-to-rust verification_key.json
+
+# Specify output directory
+snarkjs-to-solana verification-key-to-rust verification_key.json --output ./output
+
+# Show help
+snarkjs-to-solana verification-key-to-rust --help
+```
+
+This command will generate a `vote_verifying_key.rs` file in the specified directory (current directory by default).
+
+## Programmatic Usage
+
+### Node.js / Bundler Environment
 
 ```javascript
 // In a Node.js environment or with bundlers like Webpack, Vite, etc.

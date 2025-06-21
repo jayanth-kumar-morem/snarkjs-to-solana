@@ -4,6 +4,9 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "snarkjs-to-solana": "./bin/cli.js"
+  },
   "exports": {
     ".": {
       "browser": "./dist/index.browser.js",
@@ -18,10 +21,13 @@
     "dist/**/*",
     "examples/**/*",
     "proof_utils/pkg/**/*",
+    "bin/**/*",
+    "src/parse_vk_to_rust.js",
     "README.md",
     "LICENSE"
   ],
   "dependencies": {
+    "commander": "^12.1.0",
     "ffjavascript": "^0.3.1",
     "proofUtils": "file:./proof_utils/pkg",
     "typescript": "^5.8.3"
