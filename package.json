@@ -1,32 +1,72 @@
 {
-  "name": "snarkjs-to-solana",
+  "name": "@jayanth-kumar-morem/snarkjs-to-solana",
   "version": "1.0.0",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "browser": "./dist/index.browser.js",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
   "author": "Jayanth Kumar <jayanthkumar1903@gmail.com>",
   "license": "MIT",
   "files": [
     "dist/**/*",
     "examples/**/*",
-    "proof_utils/pkg/*",
+    "proof_utils/pkg/**/*",
     "README.md",
     "LICENSE"
   ],
   "dependencies": {
     "ffjavascript": "^0.3.1",
-    "proofUtils": "file:./proof_utils/pkg"
+    "proofUtils": "file:./proof_utils/pkg",
+    "typescript": "^5.8.3"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "npm run build:proofUtils && tsc",
+    "build:proofUtils": "cd proof_utils && ./build.sh && cd -",
+    "build:proofUtils:web": "cd proof_utils && wasm-pack build --target web --out-dir pkg-web && cd -",
+    "build:proofUtils:bundler": "cd proof_utils && wasm-pack build --target bundler --out-dir pkg-bundler && cd -",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
     "prePublishOnly": "npm run build && npm test",
-    "prepare": "npm run build",
-    "buid:proofUtils:bundler": "cd proof_utils && wasm-pack build --target bundler && cd -",
-    "build:proofUtils:nodejs": "cd proof_utils && wasm-pack build --target nodejs && cd -"
+    "prepare": "npm run build"
   },
-
+  "keywords": [
+    "convert-snarkjs-proof",
+    "snarkjs-proof-convert",
+    "groth16-proof-convert",
+    "solana-verifier",
+    "verification-key-to-rust",
+    "cryptography",
+    "zero-knowledge",
+    "zk-proofs",
+    "blockchain"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jayanth-kumar-morem/snarkjs-to-solana"
+  },
+  "bugs": {
+    "url": "https://github.com/jayanth-kumar-morem/snarkjs-to-solana/issues"
+  },
+  "homepage": "https://github.com/jayanth-kumar-morem/snarkjs-to-solana#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.34.1",
+    "@typescript-eslint/parser": "^8.34.1",
+    "eslint": "^9.29.0",
+    "jest": "^30.0.2",
+    "ts-jest": "^29.4.0"
+  }
 }

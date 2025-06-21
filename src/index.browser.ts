@@ -1,6 +1,16 @@
 // @ts-ignore
 import * as ff from "ffjavascript";
-import {convert_proof} from "proofUtils";
+
+let convert_proof: (proof: Uint8Array) => Uint8Array;
+
+const initWebModule = async () => {
+    try {
+        const wasmModule = await import("../proof_utils/pkg/web/proof_utils.js");
+        convert_proof = wasmModule.convert_proof;
+    } catch (error) {
+        throw new Error("Failed to load web WASM module: " + error);
+    }
+};
 
 const g1Uncompressed = (curve: any, p1Raw: any) => {
     const p1 = curve.G1.fromObject(p1Raw);
@@ -18,12 +28,16 @@ const g2Uncompressed = (curve: any, p2Raw: any) => {
     return Buffer.from(buff);
 }
 
-export async function getSolanaCompatibleProof(proof: any) {
+export async function snarkjsToSolana(proof: any) {
+    if (!convert_proof) {
+        await initWebModule();
+    }
+
     const curve = await ff.buildBn128();
     const proofProc = await ff.utils.unstringifyBigInts(proof);
     let proofA = g1Uncompressed(curve, proofProc.pi_a);
     // @ts-ignore
-    proofA = convert_proof(proofA);
+    proofA =  convert_proof(proofA);
     
     const proofB = g2Uncompressed(curve, proofProc.pi_b);
     const proofC = g1Uncompressed(curve, proofProc.pi_c);
@@ -33,4 +47,4 @@ export async function getSolanaCompatibleProof(proof: any) {
         proofB,
         proofC
     }
-}
+} 

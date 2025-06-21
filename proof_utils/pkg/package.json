@@ -1,0 +1,25 @@
+{
+  "name": "proofUtils",
+  "version": "0.1.0",
+  "description": "WASM utilities for proof conversion",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "require": "./index.js",
+      "browser": "./index-web.js",
+      "default": "./index.js"
+    }
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "index-web.js",
+    "index-web.d.ts",
+    "web/",
+    "bundler/"
+  ],
+  "sideEffects": false
+} 
