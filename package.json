@@ -1,6 +1,6 @@
 {
   "name": "@jayanth-kumar-morem/snarkjs-to-solana",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -23,7 +23,7 @@
     "proof_utils/pkg/**/*",
     "bin/**/*",
     "src/parse_vk_to_rust.js",
-    "README.md", 
+    "README.md",
     "LICENSE"
   ],
   "dependencies": {
