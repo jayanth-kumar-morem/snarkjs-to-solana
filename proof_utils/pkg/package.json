@@ -7,10 +7,11 @@
   "types": "index.d.ts",
   "exports": {
     ".": {
-      "import": "./index.js",
-      "require": "./index.js",
-      "browser": "./index-web.js",
-      "default": "./index.js"
+      "node": "./nodejs/proof_utils.js",
+      "browser": "./web/proof_utils.js", 
+      "import": "./bundler/proof_utils.js",
+      "require": "./nodejs/proof_utils.js",
+      "default": "./nodejs/proof_utils.js"
     }
   },
   "files": [

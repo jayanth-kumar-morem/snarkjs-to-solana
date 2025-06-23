@@ -23,7 +23,7 @@
     "proof_utils/pkg/**/*",
     "bin/**/*",
     "src/parse_vk_to_rust.js",
-    "README.md",
+    "README.md", 
     "LICENSE"
   ],
   "dependencies": {

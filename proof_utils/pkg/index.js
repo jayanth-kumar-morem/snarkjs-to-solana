@@ -1,2 +1,2 @@
-// Default export for bundler/Node.js environments
-export { convert_proof } from './bundler/proof_utils.js'; 
+// Default export for Node.js/CommonJS environments
+export { convert_proof } from './nodejs/proof_utils.js'; 

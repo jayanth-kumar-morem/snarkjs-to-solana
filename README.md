@@ -4,11 +4,12 @@ A comprehensive toolkit for converting snarkjs artifacts to Solana-compatible fo
 
 ## Features
 
-- **Dual-target WASM compilation**: Optimized for both web and bundler environments
+- **Triple-target WASM compilation**: Optimized for web, bundler, and Node.js/CommonJS environments
 - **CLI interface**: Convert verification keys directly from the command line
 - **Programmatic API**: Integrate proof conversion into your applications
 - **Automatic environment detection**: Seamlessly works in Node.js, browsers, and bundlers
 - **TypeScript support**: Full type definitions included
+- **CommonJS and ESM compatibility**: Works with both module systems
 
 ## Installation
 
@@ -68,10 +69,22 @@ The command generates a `verifying_key.rs` file containing:
 
 ## Programmatic Usage
 
-### Node.js / Bundler Environment
+### Node.js / CommonJS Environment
 
 ```javascript
-// In a Node.js environment or with bundlers like Webpack, Vite, etc.
+// Works with both CommonJS (require) and ESM (import) in Node.js
+const { getSolanaCompatibleProof } = require('@jayanth-kumar-morem/snarkjs-to-solana');
+// OR
+import { getSolanaCompatibleProof } from '@jayanth-kumar-morem/snarkjs-to-solana';
+
+// This automatically uses the Node.js-targeted WASM package (CommonJS compatible)
+const result = await getSolanaCompatibleProof(proof);
+```
+
+### Modern Bundler Environment (Webpack, Vite, etc.)
+
+```javascript
+// In bundler environments like Webpack, Vite, Rollup, etc.
 import { getSolanaCompatibleProof } from '@jayanth-kumar-morem/snarkjs-to-solana';
 
 // This automatically uses the bundler-targeted WASM package
@@ -194,6 +207,18 @@ The CLI provides clear error messages for common issues:
 - **Permission errors**: If the output directory cannot be written to
 
 ## Troubleshooting
+
+### CommonJS/ESM Compatibility Issues
+
+If you encounter module loading errors in Node.js:
+
+```javascript
+// Try using require for CommonJS environments
+const { getSolanaCompatibleProof } = require('@jayanth-kumar-morem/snarkjs-to-solana');
+
+// Or dynamic import for ESM environments
+const { getSolanaCompatibleProof } = await import('@jayanth-kumar-morem/snarkjs-to-solana');
+```
 
 ### Command not found
 If you get "command not found" error:

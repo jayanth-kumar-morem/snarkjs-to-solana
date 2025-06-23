@@ -1,0 +1,11 @@
+{
+  "name": "proof_utils",
+  "version": "0.1.0",
+  "files": [
+    "proof_utils_bg.wasm",
+    "proof_utils.js",
+    "proof_utils.d.ts"
+  ],
+  "main": "proof_utils.js",
+  "types": "proof_utils.d.ts"
+}

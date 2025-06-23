@@ -27,8 +27,10 @@ const g2Uncompressed = (curve: any, p2Raw: any) => {
 
     return Buffer.from(buff);
 }
+const toHex64Padded = (val: any) => BigInt(val).toString(16).padStart(64, "0");
+const to32ByteBuffer = (val: any) => Buffer.from(toHex64Padded(val), "hex");
 
-export async function getSolanaCompatibleProof(proof: any) {
+export async function getSolanaCompatibleProof(proof: any, publicSignals: any) {
     if (!convert_proof) {
         await initWebModule();
     }
@@ -45,6 +47,7 @@ export async function getSolanaCompatibleProof(proof: any) {
     return {
         proofA,
         proofB,
-        proofC
+        proofC,
+        publicSignals: publicSignals.map((x: any) => to32ByteBuffer(BigInt(x))),
     }
-} 
+}
